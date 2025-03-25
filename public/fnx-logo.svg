@@ -1,0 +1,16 @@
+<svg width="500" height="500" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- FNX Logo - white on transparent background -->
+  <g>
+    <!-- F -->
+    <path d="M100 100H200V150H150V225H190V275H150V400H100V100Z" fill="white"/>
+    
+    <!-- N -->
+    <path d="M220 100H270V300L320 250V100H370V400H320V350L270 400V450H220V100Z" fill="white"/>
+    
+    <!-- X - with special design -->
+    <path d="M390 100H450L420 200L480 300L430 400H370L410 300L350 200L390 100Z" fill="white"/>
+    
+    <!-- Triangle accent on the X -->
+    <path d="M430 100L480 180L400 180L430 100Z" fill="#4b9fff"/>
+  </g>
+</svg> 
