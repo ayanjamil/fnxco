@@ -1,27 +1,25 @@
 "use client";
 
 import Link from 'next/link';
-
-
-import { Twitter, Linkedin,  Mail } from 'lucide-react';
-import { CSSProperties, useState, useEffect} from 'react';
+import { Twitter, Linkedin, Mail } from 'lucide-react';
+import { CSSProperties, useState, useEffect, RefObject } from 'react';
 import { motion } from 'framer-motion';
 
-export default function Footer({ scheduleRef }) {
+export default function Footer({ scheduleRef }: { scheduleRef: RefObject<HTMLDivElement | null> }) {
   const [isMediumScreen, setIsMediumScreen] = useState(false);
-  
+
   // Use useEffect for responsive design
   useEffect(() => {
     const handleResize = () => {
       setIsMediumScreen(window.innerWidth >= 768);
     };
-    
+
     // Set initial value
     handleResize();
-    
+
     // Add event listener
     window.addEventListener('resize', handleResize);
-    
+
     // Clean up
     return () => window.removeEventListener('resize', handleResize);
   }, []);
@@ -33,8 +31,8 @@ export default function Footer({ scheduleRef }) {
 
   // Scroll to schedule function
   const scrollToSchedule = () => {
-    if (scheduleRef.current) {
-      scheduleRef.current.scrollIntoView({ behavior: 'smooth' });
+    if (scheduleRef?.current) {
+      scheduleRef.current.scrollIntoView({ behavior: "smooth" });
     }
   };
 
@@ -86,8 +84,6 @@ export default function Footer({ scheduleRef }) {
     transition: 'color 0.3s ease, border-color 0.3s ease',
     display: 'inline-block',
   };
-
-  
 
   return (
     <>
@@ -142,4 +138,4 @@ export default function Footer({ scheduleRef }) {
       </footer>
     </>
   );
-} 
+}

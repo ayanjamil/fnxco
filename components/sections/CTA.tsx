@@ -312,95 +312,30 @@ export default function CTA() {
   );
 }
 
-// Component to load Calendly script client-side only
+// Merge the global declarations for Calendly into a single declaration
+declare global {
+  interface Window {
+    Calendly: {
+      initInlineWidgets: () => void;
+      customizeSettings?: (settings: {
+        hideEventTypeDetails?: boolean;
+        hideLandingPageDetails?: boolean;
+        primaryColor?: string;
+        textColor?: string;
+        backgroundColor?: string;
+      }) => void;
+    };
+  }
+}
+
+// Update the CalendlyScript function
 function CalendlyScript() {
   useEffect(() => {
-    // Add type definition for Calendly
-    interface CalendlyWindow extends Window {
-      Calendly?: {
-        initInlineWidgets: () => void;
-        customizeSettings: (settings: {
-          hideEventTypeDetails?: boolean;
-          hideLandingPageDetails?: boolean;
-          primaryColor?: string;
-          textColor?: string;
-          backgroundColor?: string;
-        }) => void;
-      }
+    if (window.Calendly && typeof window.Calendly.initInlineWidgets === 'function') {
+      window.Calendly.initInlineWidgets();
     }
-
-    // Create and add the script tag
-    const script = document.createElement('script');
-    script.src = 'https://assets.calendly.com/assets/external/widget.js';
-    script.async = true;
-    
-    // When script loads, initialize with custom settings
-    script.onload = () => {
-      const win = window as CalendlyWindow;
-      if (win.Calendly) {
-        // Initialize widgets
-        win.Calendly.initInlineWidgets();
-        
-        // Apply custom settings
-        try {
-          win.Calendly.customizeSettings({
-            hideEventTypeDetails: true,
-            hideLandingPageDetails: false,
-            primaryColor: '6366f1',
-            textColor: 'ffffff',
-            backgroundColor: '000000'
-          });
-        } catch (e) {
-          console.log('Calendly customization error:', e);
-        }
-        
-        // Add mutation observer to remove scrollbars from Calendly iframe when it loads
-        const observer = new MutationObserver(() => {
-          const calendlyIframe = document.querySelector('.calendly-inline-widget iframe');
-          if (calendlyIframe) {
-            // Apply additional styles to iframe content when it loads
-            calendlyIframe.addEventListener('load', () => {
-              try {
-                const iframeDoc = (calendlyIframe as HTMLIFrameElement).contentDocument;
-                if (iframeDoc) {
-                  // Create a style element in the iframe
-                  const style = iframeDoc.createElement('style');
-                  style.textContent = `
-                    body, html { overflow: hidden !important; height: 100% !important; }
-                    .calendar-wrapper { padding: 0 !important; }
-                    .main { background-color: transparent !important; }
-                  `;
-                  iframeDoc.head.appendChild(style);
-                }
-              } catch (e) {
-                // Cross-origin errors may occur, which is fine
-                console.log('Could not inject styles into iframe:', e);
-              }
-            });
-            
-            // Disconnect once we find the iframe
-            observer.disconnect();
-          }
-        });
-        
-        // Start observing
-        observer.observe(document.body, { childList: true, subtree: true });
-      }
-    };
-    
-    document.body.appendChild(script);
-    
-    // Clean up on unmount
-    return () => {
-      document.body.removeChild(script);
-      // Remove any observer
-      const calendlyIframe = document.querySelector('.calendly-inline-widget iframe');
-      if (calendlyIframe) {
-        (calendlyIframe as HTMLIFrameElement).remove();
-      }
-    };
   }, []);
-  
+
   return null;
 }
 
