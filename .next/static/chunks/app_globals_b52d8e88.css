@@ -1,0 +1,243 @@
+/* [project]/app/globals.css [app-client] (css) */
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
+:root {
+  --background: #0a0a0a;
+  --foreground: #fff;
+  --primary: #fff;
+  --primary-hover: #e0e0e0;
+  --secondary: #a0a0a0;
+  --accent: #111;
+  --muted-100: #a0a0a0;
+  --muted-200: #333;
+  --success: #fff;
+  --warning: #fff;
+  --danger: #fff;
+  --nav-height: 4rem;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--nav-height)  + 1rem);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+  letter-spacing: .015em;
+}
+
+.btn-primary {
+  padding: .75rem 1.5rem;
+  border-radius: 0;
+  font-weight: 400;
+  background-color: var(--primary);
+  color: var(--background);
+  transition-property: all;
+  transition-duration: .3s;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  font-size: .875rem;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  padding: .75rem 1.5rem;
+  border-radius: 0;
+  font-weight: 400;
+  border: 1px solid var(--primary);
+  color: var(--foreground);
+  transition-property: all;
+  transition-duration: .3s;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  font-size: .875rem;
+}
+
+.btn-outline:hover {
+  background-color: #ffffff0d;
+  transform: translateY(-2px);
+}
+
+.section {
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+  position: relative;
+  z-index: 1;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+.container {
+  max-width: 80rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+@media (width >= 768px) {
+  .container {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 300;
+  color: var(--foreground);
+  letter-spacing: .05em;
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+}
+
+h2 {
+  font-size: 2rem;
+  margin-bottom: 1.25rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.fade-in {
+  opacity: 0;
+  animation: .7s ease-in forwards fadeIn;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.motion-safe:where([data-motion="true"]) {
+  transform: translateZ(0);
+}
+
+.stylish-box {
+  position: relative;
+  padding: 2.5rem;
+  border: none;
+  background-color: var(--accent);
+  box-shadow: 0 10px 40px #0003;
+}
+
+.stylish-box-title {
+  font-size: 1.25rem;
+  font-weight: 300;
+  margin-bottom: 1.5rem;
+  color: var(--primary);
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+
+.service-card {
+  padding: 2rem;
+  background-color: var(--accent);
+  border: none;
+  border-bottom: 1px solid var(--primary);
+  transition: all .4s;
+  margin-bottom: 2rem;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px #0003;
+}
+
+.service-title {
+  font-size: 1.25rem;
+  font-weight: 400;
+  margin-bottom: 1rem;
+  color: var(--primary);
+  letter-spacing: .05em;
+}
+
+.service-description {
+  font-size: .95rem;
+  color: var(--muted-100);
+  line-height: 1.7;
+}
+
+.feature-box {
+  padding: 2rem;
+  background-color: var(--accent);
+  position: relative;
+  box-shadow: 0 5px 20px #0000001a;
+  border-left: 1px solid var(--primary);
+}
+
+.feature-icon {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 0;
+  background-color: #0000;
+  border: 1px solid var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.feature-title {
+  font-size: 1.125rem;
+  font-weight: 400;
+  margin-bottom: .75rem;
+  letter-spacing: .05em;
+}
+
+.feature-description {
+  font-size: .95rem;
+  color: var(--muted-100);
+  line-height: 1.7;
+}
+
+#hero {
+  z-index: 10;
+}
+
+#partners {
+  z-index: 9;
+}
+
+#features {
+  z-index: 8;
+}
+
+#pricing {
+  z-index: 7;
+}
+
+#testimonials {
+  z-index: 6;
+}
+
+#faq {
+  z-index: 5;
+}
+
+#contact {
+  z-index: 4;
+}
+
+/*# sourceMappingURL=app_globals_b52d8e88.css.map*/
