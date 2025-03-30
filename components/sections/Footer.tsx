@@ -5,41 +5,31 @@ import { Twitter, Linkedin, Mail } from 'lucide-react';
 import { CSSProperties, useState, useEffect, RefObject } from 'react';
 import { motion } from 'framer-motion';
 
-export default function Footer({ scheduleRef }: { scheduleRef: RefObject<HTMLDivElement | null> }) {
+export default function Footer({ scheduleRef }: { scheduleRef: RefObject<HTMLDivElement> }) {
   const [isMediumScreen, setIsMediumScreen] = useState(false);
 
-  // Use useEffect for responsive design
   useEffect(() => {
     const handleResize = () => {
       setIsMediumScreen(window.innerWidth >= 768);
     };
-
-    // Set initial value
     handleResize();
-
-    // Add event listener
     window.addEventListener('resize', handleResize);
-
-    // Clean up
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Scroll to top function
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // Scroll to schedule function
   const scrollToSchedule = () => {
     if (scheduleRef?.current) {
       scheduleRef.current.scrollIntoView({ behavior: "smooth" });
     }
   };
 
-  // Footer styles
   const footerStyle: CSSProperties = {
-    background: 'linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.9))',
-    color: '#fff',
+    background: '#0d0d0d',
+    color: '#d4d4d4',
     padding: '3rem 1.5rem',
     textAlign: 'center',
     position: 'relative',
@@ -51,27 +41,32 @@ export default function Footer({ scheduleRef }: { scheduleRef: RefObject<HTMLDiv
     display: 'flex',
     flexDirection: isMediumScreen ? 'row' : 'column',
     justifyContent: 'space-between',
-    alignItems: 'flex-start',
+    alignItems: isMediumScreen ? 'flex-start' : 'center',
     gap: '2rem',
-    marginBottom: '1.5rem',
+    marginBottom: '2rem',
+    maxWidth: '1100px',
+    margin: '0 auto',
   };
 
   const columnStyle: CSSProperties = {
     flex: 1,
     minWidth: '200px',
+    textAlign: isMediumScreen ? 'left' : 'center',
   };
 
   const headingStyle: CSSProperties = {
     fontSize: '1.5rem',
-    fontWeight: 700,
-    marginBottom: '0.5rem',
+    fontWeight: 600,
+    marginBottom: '0.75rem',
+    color: '#ffffff',
   };
 
   const subheadingStyle: CSSProperties = {
-    fontSize: '1.0rem',
+    fontSize: '0.95rem',
     fontWeight: 400,
-    marginBottom: '1rem',
-    color: 'rgba(255, 255, 255, 0.8)',
+    marginBottom: '0.75rem',
+    color: 'rgba(212, 212, 212, 0.9)',
+    lineHeight: '1.6',
   };
 
   const linkStyle: CSSProperties = {
@@ -83,6 +78,13 @@ export default function Footer({ scheduleRef }: { scheduleRef: RefObject<HTMLDiv
     textDecoration: 'none',
     transition: 'color 0.3s ease, border-color 0.3s ease',
     display: 'inline-block',
+  };
+
+  const socialIconStyle: CSSProperties = {
+    display: 'flex',
+    justifyContent: 'center',
+    gap: '1.25rem',
+    marginBottom: '1.5rem',
   };
 
   return (
@@ -117,24 +119,24 @@ export default function Footer({ scheduleRef }: { scheduleRef: RefObject<HTMLDiv
             </p>
           </div>
         </div>
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '1.5rem', marginBottom: '1.5rem' }}>
-          <motion.div whileHover={{ scale: 1.05 }}>
+        <div style={socialIconStyle}>
+          <motion.div whileHover={{ scale: 1.1 }}>
             <Link href="https://www.linkedin.com/company/finding-niche/" target="_blank" style={linkStyle}>
-              <Linkedin size={20} />
+              <Linkedin size={22} />
             </Link>
           </motion.div>
-          <motion.div whileHover={{ scale: 1.05 }}>
+          <motion.div whileHover={{ scale: 1.1 }}>
             <Link href="https://x.com/fnxlabsco" target="_blank" style={linkStyle}>
-              <Twitter size={20} />
+              <Twitter size={22} />
             </Link>
           </motion.div>
-          <motion.div whileHover={{ scale: 1.05 }}>
+          <motion.div whileHover={{ scale: 1.1 }}>
             <Link href="mailto:nishit@fnxlabs.co" style={linkStyle}>
-              <Mail size={20} />
+              <Mail size={22} />
             </Link>
           </motion.div>
         </div>
-        <p style={subheadingStyle}>2025 FNX Labs, Inc. All rights reserved.</p>
+        <p style={{ ...subheadingStyle, fontSize: '0.85rem' }}>© 2025 FNX Labs, Inc. All rights reserved.</p>
       </footer>
     </>
   );

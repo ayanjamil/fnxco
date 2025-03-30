@@ -44,19 +44,19 @@ export default function Navbar() {
 
   const navStyle: CSSProperties = {
     width: '100%',
-    height: 'var(--nav-height)',
+    height: '60px', // Adjusted for mobile
     backgroundColor: scrolled ? 'rgba(0, 0, 0, 0.97)' : 'transparent',
     backdropFilter: scrolled ? 'blur(10px)' : 'none',
     position: 'fixed',
     top: 0,
     left: 0,
     right: 0,
-    padding: '0 1.5rem',
+    padding: '0 1rem',
     borderBottom: `1px solid ${scrolled ? 'rgba(255, 255, 255, 0.05)' : 'transparent'}`,
     display: 'flex',
     alignItems: 'center',
     zIndex: 100,
-    transition: 'all 0.5s cubic-bezier(0.16, 1, 0.3, 1)'
+    transition: 'all 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
   };
 
   const containerStyle: CSSProperties = {
@@ -101,7 +101,7 @@ export default function Navbar() {
   
 
   const desktopNavStyle: CSSProperties = {
-    display: isMobile ? 'none' : 'flex',
+    display: 'flex',
     alignItems: 'center',
     gap: '2.5rem'
   };
@@ -132,7 +132,7 @@ export default function Navbar() {
   };
 
   const primaryButtonStyle: CSSProperties = {
-    padding: '0.5rem 1.25rem',
+    padding: '0.5rem 1.25rem', // Adjusted padding to fit within display
     backgroundColor: 'transparent',
     color: scrolled ? '#7c3aed' : 'var(--primary)',
     border: `1px solid ${scrolled ? '#7c3aed' : 'var(--primary)'}`,
@@ -140,7 +140,7 @@ export default function Navbar() {
     display: 'inline-flex',
     alignItems: 'center',
     textDecoration: 'none',
-    fontSize: '0.85rem',
+    fontSize: '0.95rem', // Adjusted font size for better fit
     letterSpacing: '0.05em',
     textTransform: 'uppercase',
     transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
@@ -189,7 +189,7 @@ export default function Navbar() {
   const mobileNavLinksStyle: CSSProperties = {
     display: 'flex',
     flexDirection: 'column',
-    padding: '1.5rem'
+    padding: '1rem'
   };
 
   const mobileLinkStyle: CSSProperties = {
@@ -198,7 +198,7 @@ export default function Navbar() {
     margin: 0,
     borderBottom: '1px solid rgba(255, 255, 255, 0.05)',
     textDecoration: 'none',
-    fontSize: '0.85rem',
+    fontSize: '0.9rem', // Slightly larger for readability
     letterSpacing: '0.05em',
     textTransform: 'uppercase',
     fontWeight: '300',
@@ -250,7 +250,7 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop Navigation */}
-        <div style={desktopNavStyle}>
+        <div className="desktop-nav" style={desktopNavStyle}>
           {navigationLinks.map((link, index) => (
             <motion.div
               key={link.path}
@@ -384,6 +384,18 @@ export default function Navbar() {
           }
           100% {
             background-position: 0% 50%;
+          }
+        }
+      `}</style>
+      <style jsx>{`
+        @media (max-width: 768px) {
+          .desktop-nav {
+            display: none;
+          }
+        }
+        @media (min-width: 768px) {
+          nav {
+            padding: 0 1.5rem;
           }
         }
       `}</style>

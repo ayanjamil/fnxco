@@ -16,7 +16,7 @@ interface FeatureItemProps {
 interface Feature {
   title: string;
   description: string;
-  icon: string;
+  icon: keyof typeof featureIcons;
 }
 
 const FeatureItem = ({ icon, title, description, index }: FeatureItemProps) => {
@@ -37,7 +37,12 @@ const FeatureItem = ({ icon, title, description, index }: FeatureItemProps) => {
     justifyContent: 'space-between',
     border: '1px solid rgba(255, 255, 255, 0.05)',
     marginBottom: '2rem',
-    transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)'
+    transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
+    // Responsive adjustments
+    '@media (max-width: 768px)': {
+      flexDirection: 'column',
+      padding: '1.5rem',
+    }
   };
 
   const iconContainerStyle: CSSProperties = {
@@ -200,6 +205,71 @@ const FeatureItem = ({ icon, title, description, index }: FeatureItemProps) => {
   );
 };
 
+const featureIcons = {
+  palette: <Palette size={36} />,
+  phone: <Phone size={36} />,
+  'puzzle-piece': (
+    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="gradient3" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="var(--primary)" />
+          <stop offset="100%" stopColor="#4b9fff" />
+        </linearGradient>
+      </defs>
+      <path d="M4 7H9V12H4V7Z" stroke="url(#gradient3)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M9 7V3.54C9 3.21 9.21 3 9.54 3H13.5" stroke="url(#gradient3)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M14.5 3C14.5 4.1 15.4 5 16.5 5C17.6 5 18.5 4.1 18.5 3" stroke="url(#gradient3)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M20 16.5C18.9 16.5 18 15.6 18 14.5C18 13.4 18.9 12.5 20 12.5" stroke="url(#gradient3)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M20 12.5H16.54C16.21 12.5 16 12.29 16 11.96V7.5" stroke="url(#gradient3)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M16 7.5H20V12" stroke="url(#gradient3)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M11 16H15V20.5H11V16Z" stroke="url(#gradient3)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M11 16V12.5H7V16" stroke="url(#gradient3)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  ),
+  'expand': (
+    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="gradient4" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="var(--primary)" />
+          <stop offset="100%" stopColor="#4b9fff" />
+        </linearGradient>
+      </defs>
+      <path d="M15 3H21V9" stroke="url(#gradient4)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M9 21H3V15" stroke="url(#gradient4)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M21 3L14 10" stroke="url(#gradient4)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M3 21L10 14" stroke="url(#gradient4)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  ),
+  'users': (
+    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="gradient5" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="var(--primary)" />
+          <stop offset="100%" stopColor="#4b9fff" />
+        </linearGradient>
+      </defs>
+      <path d="M17 21V19C17 17.9391 16.5786 16.9217 15.8284 16.1716C15.0783 15.4214 14.0609 15 13 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21" stroke="url(#gradient5)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M9 11C11.2091 11 13 9.20914 13 7C13 4.79086 11.2091 3 9 3C6.79086 3 5 4.79086 5 7C5 9.20914 6.79086 11 9 11Z" stroke="url(#gradient5)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M23 21V19C22.9993 18.1137 22.7044 17.2528 22.1614 16.5523C21.6184 15.8519 20.8581 15.3516 20 15.13" stroke="url(#gradient5)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M16 3.13C16.8604 3.35031 17.623 3.85071 18.1676 4.55232C18.7122 5.25392 19.0078 6.11683 19.0078 7.005C19.0078 7.89318 18.7122 8.75608 18.1676 9.45769C17.623 10.1593 16.8604 10.6597 16 10.88" stroke="url(#gradient5)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  ),
+  'headset': (
+    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="gradient6" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="var(--primary)" />
+          <stop offset="100%" stopColor="#4b9fff" />
+        </linearGradient>
+      </defs>
+      <path d="M18 16.5H17.25C16.5596 16.5 16 17.0596 16 17.75V18.25C16 18.9404 16.5596 19.5 17.25 19.5H18.75C19.4404 19.5 20 18.9404 20 18.25V13" stroke="url(#gradient6)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M4 13V18.25C4 18.9404 4.55964 19.5 5.25 19.5H6.75C7.44036 19.5 8 18.9404 8 18.25V17.75C8 17.0596 7.44036 16.5 6.75 16.5H6" stroke="url(#gradient6)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M4 13C4 7.5 7.5 4 12 4C16.5 4 20 7.5 20 13" stroke="url(#gradient6)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M15 19.5V21C15 21.5523 14.5523 22 14 22H10C9.44772 22 9 21.5523 9 21V19.5" stroke="url(#gradient6)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  )
+};
+
 export default function Features() {
   const sectionStyle: CSSProperties = {
     backgroundColor: '#000',
@@ -330,76 +400,6 @@ export default function Features() {
       icon: "headset"
     }
   ];
-
-  // SVG icons for each feature - enhance with color gradients
-  const featureIcons = {
-    'palette': (
-      <Palette size={36} />
-    ),
-    'phone': (
-      <Phone size={36} />
-    ),
-    'puzzle-piece': (
-      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="gradient3" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="var(--primary)" />
-            <stop offset="100%" stopColor="#4b9fff" />
-          </linearGradient>
-        </defs>
-        <path d="M4 7H9V12H4V7Z" stroke="url(#gradient3)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-        <path d="M9 7V3.54C9 3.21 9.21 3 9.54 3H13.5" stroke="url(#gradient3)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-        <path d="M14.5 3C14.5 4.1 15.4 5 16.5 5C17.6 5 18.5 4.1 18.5 3" stroke="url(#gradient3)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-        <path d="M20 16.5C18.9 16.5 18 15.6 18 14.5C18 13.4 18.9 12.5 20 12.5" stroke="url(#gradient3)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-        <path d="M20 12.5H16.54C16.21 12.5 16 12.29 16 11.96V7.5" stroke="url(#gradient3)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-        <path d="M16 7.5H20V12" stroke="url(#gradient3)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-        <path d="M11 16H15V20.5H11V16Z" stroke="url(#gradient3)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-        <path d="M11 16V12.5H7V16" stroke="url(#gradient3)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-      </svg>
-    ),
-    'expand': (
-      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="gradient4" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="var(--primary)" />
-            <stop offset="100%" stopColor="#4b9fff" />
-          </linearGradient>
-        </defs>
-        <path d="M15 3H21V9" stroke="url(#gradient4)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-        <path d="M9 21H3V15" stroke="url(#gradient4)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-        <path d="M21 3L14 10" stroke="url(#gradient4)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-        <path d="M3 21L10 14" stroke="url(#gradient4)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-      </svg>
-    ),
-    'users': (
-      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="gradient5" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="var(--primary)" />
-            <stop offset="100%" stopColor="#4b9fff" />
-          </linearGradient>
-        </defs>
-        <path d="M17 21V19C17 17.9391 16.5786 16.9217 15.8284 16.1716C15.0783 15.4214 14.0609 15 13 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21" stroke="url(#gradient5)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-        <path d="M9 11C11.2091 11 13 9.20914 13 7C13 4.79086 11.2091 3 9 3C6.79086 3 5 4.79086 5 7C5 9.20914 6.79086 11 9 11Z" stroke="url(#gradient5)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-        <path d="M23 21V19C22.9993 18.1137 22.7044 17.2528 22.1614 16.5523C21.6184 15.8519 20.8581 15.3516 20 15.13" stroke="url(#gradient5)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-        <path d="M16 3.13C16.8604 3.35031 17.623 3.85071 18.1676 4.55232C18.7122 5.25392 19.0078 6.11683 19.0078 7.005C19.0078 7.89318 18.7122 8.75608 18.1676 9.45769C17.623 10.1593 16.8604 10.6597 16 10.88" stroke="url(#gradient5)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-      </svg>
-    ),
-    'headset': (
-      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="gradient6" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="var(--primary)" />
-            <stop offset="100%" stopColor="#4b9fff" />
-          </linearGradient>
-        </defs>
-        <path d="M18 16.5H17.25C16.5596 16.5 16 17.0596 16 17.75V18.25C16 18.9404 16.5596 19.5 17.25 19.5H18.75C19.4404 19.5 20 18.9404 20 18.25V13" stroke="url(#gradient6)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-        <path d="M4 13V18.25C4 18.9404 4.55964 19.5 5.25 19.5H6.75C7.44036 19.5 8 18.9404 8 18.25V17.75C8 17.0596 7.44036 16.5 6.75 16.5H6" stroke="url(#gradient6)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-        <path d="M4 13C4 7.5 7.5 4 12 4C16.5 4 20 7.5 20 13" stroke="url(#gradient6)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-        <path d="M15 19.5V21C15 21.5523 14.5523 22 14 22H10C9.44772 22 9 21.5523 9 21V19.5" stroke="url(#gradient6)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-      </svg>
-    )
-  };
 
   return (
     <section id="features" style={sectionStyle}>
@@ -536,4 +536,4 @@ export default function Features() {
       `}</style>
     </section>
   );
-} 
+}

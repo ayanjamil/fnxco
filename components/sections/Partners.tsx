@@ -33,8 +33,8 @@ export default function Partners() {
   };
 
   return (
-    <section id="partners" className="section py-12 bg-background">
-      <div className="container">
+    <section id="partners" className="section py-8 sm:py-12 bg-background px-4 md:px-8">
+      <div className="container mx-auto max-w-7xl">
         <motion.div 
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -46,8 +46,8 @@ export default function Partners() {
             zIndex: 1 
           }}
         >
-          <h2 className="text-2xl font-bold mb-4">Trusted by Industry Leaders</h2>
-          <p className="text-muted-100 dark:text-muted-200 max-w-xl mx-auto">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4">Trusted by Industry Leaders</h2>
+          <p className="text-sm sm:text-base md:text-lg text-muted-100 dark:text-muted-200 max-w-xl mx-auto">
             Join hundreds of businesses that rely on FNXLabs for their technology needs
           </p>
         </motion.div>
@@ -58,7 +58,7 @@ export default function Partners() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.1 }}
-            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center justify-items-center"
+            className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 items-center justify-items-center"
             style={{ 
               position: 'relative',
               zIndex: 1 
@@ -69,7 +69,7 @@ export default function Partners() {
                 key={partner.id}
                 variants={itemVariants}
                 whileHover={{ scale: 1.05, y: -5 }}
-                className="w-32 h-16 bg-accent rounded-lg flex items-center justify-center shadow-sm"
+                className="w-24 h-12 sm:w-32 sm:h-16 bg-accent rounded-lg flex items-center justify-center shadow-sm"
                 style={{ 
                   position: 'relative',
                   zIndex: 1 
@@ -83,4 +83,4 @@ export default function Partners() {
       </div>
     </section>
   );
-} 
+}

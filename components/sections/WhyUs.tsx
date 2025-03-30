@@ -7,7 +7,9 @@ import { motion } from "framer-motion";
 export {};
 declare global {
   interface Window {
-    Calendly: unknown;
+    Calendly: {
+      initInlineWidgets: () => void;
+    };
   }
 }
 
@@ -43,22 +45,32 @@ const subtitleStyle: CSSProperties = {
   fontWeight: 300,
 };
 
+const boxContainerStyle: CSSProperties = {
+  display: "flex",
+  flexDirection: "row",
+  justifyContent: "center",
+  alignItems: "center",
+  flexWrap: "wrap", // Allow wrapping to avoid horizontal scrolling
+  gap: "1rem",
+};
+
 const boxStyle: CSSProperties = {
-  padding: "3rem",
+  padding: "2rem", // Reduced padding for better fit
   backgroundColor: "rgba(255, 255, 255, 0.02)",
   position: "relative",
   overflow: "hidden",
   backdropFilter: "blur(5px)",
   borderRadius: "8px",
-  margin: "1rem",
+  margin: "0", // Adjusted margin for alignment
   transition: "all 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
   border: "2px solid rgba(255, 255, 255, 0.1)",
   boxShadow: "0 4px 20px rgba(255, 255, 255, 0.1)",
-  flex: "1 1 30%",
+  flex: "1 1 calc(33.333% - 1rem)", // Flexible sizing for three boxes per row
   minWidth: "250px",
+  maxWidth: "300px", // Limit maximum width
 };
 
 const pointStyle: CSSProperties = {
@@ -142,33 +154,22 @@ export default function WhyUs() {
         transform your business with these powerful features designed for the
         modern enterprise.
       </motion.p>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-between",
-          alignItems: "flex-start",
-          flexWrap: "wrap",
-        }}
-      >
-        {features.map((feature, index) => {
-          console.log(`Rendering feature with key: ${feature.id}`);
-          return (
-            <motion.div
-              key={feature.id} // Removed duplicate key assignment
-              style={boxStyle}
-              {...hoverEffect}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }} // Use index for delay
-              viewport={{ once: true, amount: 0.3 }} // Added viewport for better animation performance
-            >
-              {feature.icon}
-              <h3 style={pointStyle}>{feature.title}</h3>
-              <p>{feature.description}</p>
-            </motion.div>
-          );
-        })}
+      <div style={boxContainerStyle}>
+        {features.map((feature, index) => (
+          <motion.div
+            key={feature.id}
+            style={boxStyle}
+            {...hoverEffect}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: index * 0.1 }}
+            viewport={{ once: true, amount: 0.3 }}
+          >
+            {feature.icon}
+            <h3 style={pointStyle}>{feature.title}</h3>
+            <p>{feature.description}</p>
+          </motion.div>
+        ))}
       </div>
       <p>
         We craft a tailored action plan that fits your budget and needs—no

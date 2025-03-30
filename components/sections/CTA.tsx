@@ -1,33 +1,28 @@
 "use client";
 
-
 import { motion } from 'framer-motion';
-import { CSSProperties,  useEffect } from 'react';
+import { CSSProperties, useEffect } from 'react';
 
 export default function CTA() {
-
-
- 
-
   const sectionStyle: CSSProperties = {
     backgroundColor: '#000',
     padding: '8rem 1.5rem',
     position: 'relative',
     marginTop: '-1px',
-    overflow: 'hidden'
+    overflow: 'hidden',
   };
 
   const containerStyle: CSSProperties = {
     maxWidth: '1280px',
     margin: '0 auto',
     position: 'relative',
-    zIndex: 2
+    zIndex: 2,
   };
 
   const contentStyle: CSSProperties = {
     textAlign: 'center',
     maxWidth: '800px',
-    margin: '0 auto'
+    margin: '0 auto',
   };
 
   const titleStyle: CSSProperties = {
@@ -41,7 +36,7 @@ export default function CTA() {
     backgroundClip: 'text',
     WebkitBackgroundClip: 'text',
     WebkitTextFillColor: 'transparent',
-    animation: 'gradientText 6s ease infinite'
+    animation: 'gradientText 6s ease infinite',
   };
 
   const descriptionStyle: CSSProperties = {
@@ -49,10 +44,8 @@ export default function CTA() {
     lineHeight: 1.6,
     marginBottom: '3rem',
     color: 'rgba(255, 255, 255, 0.8)',
-    fontWeight: 300
+    fontWeight: 300,
   };
-
- 
 
   const backgroundElementsStyle: CSSProperties = {
     position: 'absolute',
@@ -60,7 +53,7 @@ export default function CTA() {
     left: 0,
     right: 0,
     bottom: 0,
-    zIndex: 0
+    zIndex: 0,
   };
 
   const diagonalConnectorStyle: CSSProperties = {
@@ -72,10 +65,9 @@ export default function CTA() {
     backgroundColor: '#000',
     transform: 'skewY(-1.5deg)',
     transformOrigin: 'top left',
-    zIndex: 0
+    zIndex: 0,
   };
 
-  // Fixed particles for consistent rendering between server and client
   const ctaParticles = [
     { width: 3.80, height: 3.75, top: 22.08, left: 9.56 },
     { width: 2.15, height: 4.59, top: 47.68, left: 41.78 },
@@ -186,7 +178,7 @@ export default function CTA() {
               marginTop: '2rem',
               overflow: 'hidden',
               maxWidth: '900px',
-              margin: '2rem auto 0'
+              margin: '2rem auto 0',
             }}
           >
             {/* Decorative elements for Calendly container */}
@@ -307,31 +299,49 @@ export default function CTA() {
           padding: 0 !important;
           margin: 0 !important;
         }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+          #contact {
+            padding: 4rem 1rem;
+          }
+      
+          .calendly-inline-widget {
+            min-height: 600px !important;
+          }
+      
+          .calendly-inline-widget iframe {
+            height: 600px !important;
+          }
+        }
       `}</style>
     </section>
   );
 }
 
-// Merge the global declarations for Calendly into a single declaration
 declare global {
   interface Window {
     Calendly: {
       initInlineWidgets: () => void;
-      customizeSettings?: (settings: {
-        hideEventTypeDetails?: boolean;
-        hideLandingPageDetails?: boolean;
-        primaryColor?: string;
-        textColor?: string;
-        backgroundColor?: string;
-      }) => void;
     };
   }
 }
 
-// Update the CalendlyScript function
 function CalendlyScript() {
   useEffect(() => {
-    if (window.Calendly && typeof window.Calendly.initInlineWidgets === 'function') {
+    const scriptId = "calendly-script";
+    if (!document.getElementById(scriptId)) {
+      const script = document.createElement("script");
+      script.id = scriptId;
+      script.src = "https://assets.calendly.com/assets/external/widget.js";
+      script.async = true;
+      script.onload = () => {
+        if (window.Calendly && typeof window.Calendly.initInlineWidgets === "function") {
+          window.Calendly.initInlineWidgets();
+        }
+      };
+      document.head.appendChild(script);
+    } else if (window.Calendly && typeof window.Calendly.initInlineWidgets === "function") {
       window.Calendly.initInlineWidgets();
     }
   }, []);

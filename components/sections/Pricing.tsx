@@ -7,8 +7,8 @@ import { Check } from 'lucide-react';
 
 export default function Pricing() {
   return (
-    <section id="pricing" className="section bg-accent">
-      <div className="container">
+    <section id="pricing" className="section bg-accent px-4 md:px-8">
+      <div className="container mx-auto max-w-7xl">
         <motion.div 
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -16,13 +16,13 @@ export default function Pricing() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Simple, Transparent Pricing</h2>
-          <p className="text-muted-100 dark:text-muted-200 max-w-xl mx-auto">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">Simple, Transparent Pricing</h2>
+          <p className="text-sm sm:text-base md:text-lg text-muted-100 dark:text-muted-200 max-w-xl mx-auto">
             Choose the plan that best fits your business needs. No hidden fees or surprises.
           </p>
         </motion.div>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
           {pricingData.map((plan, index) => (
             <motion.div
               key={plan.id}
@@ -30,7 +30,7 @@ export default function Pricing() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.1 }}
               transition={{ duration: 0.8, ease: "easeOut", delay: index * 0.2 }}
-              className={`bg-background p-8 rounded-xl border ${
+              className={`bg-background p-4 sm:p-8 md:p-10 rounded-xl border ${
                 plan.isMostPopular 
                   ? 'border-primary shadow-lg relative' 
                   : 'border-muted-200'
@@ -76,13 +76,13 @@ export default function Pricing() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.6 }}
-          className="mt-12 text-center"
+          className="mt-8 sm:mt-12 text-center px-4"
         >
-          <p className="text-muted-100 dark:text-muted-200">
+          <p className="text-sm sm:text-base md:text-lg text-muted-100 dark:text-muted-200">
             Need a custom plan? <Link href="/#contact" className="text-primary font-medium">Contact us</Link> for a tailored solution.
           </p>
         </motion.div>
       </div>
     </section>
   );
-} 
+}

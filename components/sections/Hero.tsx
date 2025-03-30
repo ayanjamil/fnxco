@@ -1,31 +1,41 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { motion } from 'framer-motion';
-import { CSSProperties } from 'react';
+import { useState, useEffect, CSSProperties } from "react";
+import { motion, Variants } from 'framer-motion';
 
 
 
 export default function Hero() {
   // Initialize responsive state
-  const [ setIsLargeScreen] = useState(false);
-  
+  const [isLargeScreen, setIsLargeScreen] = useState(false);
   
   useEffect(() => {
+    const handleResize = () => {
+      setIsLargeScreen(window.innerWidth >= 1024);
+    };
 
-  }, [setIsLargeScreen]); 
+    // Set initial value
+    handleResize();
+
+    // Add event listener
+    window.addEventListener("resize", handleResize);
+
+    // Clean up
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   // Animation variants
-  const headingVariants = {
-    hidden: {},
+  const headingVariants: Variants = {
+    hidden: { opacity: 0 },
     visible: {
+      opacity: 1,
       transition: {
         staggerChildren: 0.05,
-      }
-    }
+      },
+    },
   };
 
-  const letterVariants = {
+  const letterVariants: Variants = {
     hidden: { 
       opacity: 0, 
       y: 20 
@@ -97,13 +107,13 @@ export default function Hero() {
   const heroStyle: CSSProperties = {
     backgroundColor: '#000',
     minHeight: '80vh',
-    padding: '7rem 1.5rem 2rem',
+    padding: '4rem 1rem',
     position: 'relative',
     zIndex: 1,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    overflow: 'hidden'
+    overflow: 'hidden',
   };
 
   // Interactive floating elements
@@ -198,14 +208,14 @@ export default function Hero() {
  
 
   const headingOneStyle: CSSProperties = {
-    fontSize: 'clamp(2.5rem, 8vw, 4.5rem)',
+    fontSize: 'clamp(2rem, 6vw, 3.5rem)',
     lineHeight: 1.1,
     margin: '0 0 2rem 0',
     fontFamily: 'var(--font-display)',
     fontWeight: 600,
     textTransform: 'uppercase',
     letterSpacing: '0.02em',
-    color: 'rgba(255, 255, 255, 0.9)'
+    color: 'rgba(255, 255, 255, 0.9)',
   };
 
   const headingAccentStyle: CSSProperties = {
@@ -219,12 +229,12 @@ export default function Hero() {
   };
 
   const paragraphStyle: CSSProperties = {
-    fontSize: 'clamp(1rem, 4vw, 1.25rem)',
+    fontSize: 'clamp(0.9rem, 4vw, 1.1rem)',
     lineHeight: 1.6,
     marginBottom: '2.5rem',
     color: 'rgba(255, 255, 255, 0.7)',
     maxWidth: '700px',
-    fontWeight: 300
+    fontWeight: 300,
   };
 
   const highlightedTextStyle: CSSProperties = {
@@ -273,7 +283,7 @@ export default function Hero() {
   };
 
   return (
-    <section style={heroStyle}>
+    <section className="hero" style={heroStyle}>
       <motion.div 
         style={backgroundGradientStyle}
         animate={{ 
@@ -325,6 +335,7 @@ export default function Hero() {
         <div style={heroContentStyle}>
           <div style={heroTextContainerStyle}>
             <motion.h1 
+              className="heading-one"
               style={headingOneStyle}
               variants={headingVariants}
               initial="hidden"
@@ -332,7 +343,7 @@ export default function Hero() {
             >
               {heroTitle.map((letter, index) => {
                 // Apply different styles to specific letters
-                let letterStyle = {};
+                let letterStyle: CSSProperties = {};
                 if (index === 0) letterStyle = headingAccentStyle;
                 if (letter === "S" && index > 0) letterStyle = { color: '#7c3aed' };
                 
@@ -349,7 +360,7 @@ export default function Hero() {
               <br />
               {secondLine.map((letter, index) => {
                 // Apply different styles to specific letters
-                let letterStyle = {};
+                let letterStyle: CSSProperties = {};
                 if (index === 0) letterStyle = gradientTextStyle;
                 else if (letter === "B") letterStyle = { color: '#7c3aed' };
                 else letterStyle = secondLineStyle;
@@ -451,6 +462,16 @@ enhance operational efficiency and drive <span style={secondaryHighlightStyle}>g
           }
         }
       `}</style>
+      <style jsx>{`
+        @media (min-width: 768px) {
+          .hero {
+            padding: 7rem 1.5rem 2rem;
+          }
+          .heading-one {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+          }
+        }
+      `}</style>
     </section>
   );
-} 
+}
