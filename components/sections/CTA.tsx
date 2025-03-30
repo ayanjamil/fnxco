@@ -1,7 +1,7 @@
 "use client";
 
-import { motion } from 'framer-motion';
-import { CSSProperties, useEffect } from 'react';
+import { motion } from "framer-motion";
+import { CSSProperties, useEffect } from "react";
 
 export default function CTA() {
   const sectionStyle: CSSProperties = {
@@ -47,15 +47,6 @@ export default function CTA() {
     fontWeight: 300,
   };
 
-  const backgroundElementsStyle: CSSProperties = {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    zIndex: 0,
-  };
-
   const diagonalConnectorStyle: CSSProperties = {
     position: 'absolute',
     top: '-50px',
@@ -95,48 +86,44 @@ export default function CTA() {
     <section id="contact" style={sectionStyle}>
       <div style={diagonalConnectorStyle}></div>
       
-      {/* Background Elements */}
-      <div style={backgroundElementsStyle}>
-        <div style={{
-          position: 'absolute',
-          bottom: 0,
-          left: 0,
-          width: '100%',
-          height: '50%',
-          background: 'radial-gradient(circle at 50% 100%, rgba(var(--primary-rgb), 0.1) 0%, transparent 70%)',
-          zIndex: 0
-        }}></div>
-        
-        {/* Animated particles with fixed positions */}
-        {ctaParticles.map((particle, i) => (
-          <motion.div
-            key={i}
-            style={{
-              position: 'absolute',
-              width: particle.width,
-              height: particle.height,
-              borderRadius: '50%',
-              background: 'rgba(var(--primary-rgb), 0.2)',
-              top: `${particle.top}%`,
-              left: `${particle.left}%`,
-              zIndex: 0
-            }}
-            animate={{
-              y: [0, 15, 0, -15, 0],
-              opacity: [0.2, 0.5, 0.2]
-            }}
-            transition={{
-              duration: 8 + (i % 5) * 2,
-              repeat: Infinity,
-              ease: 'easeInOut'
-            }}
-          />
-        ))}
-      </div>
+      <div style={{
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        width: '100%',
+        height: '50%',
+        background: 'radial-gradient(circle at 50% 100%, rgba(var(--primary-rgb), 0.1) 0%, transparent 70%)',
+        zIndex: 0
+      }}></div>
       
+      {ctaParticles.map((particle, i) => (
+        <motion.div
+          key={i}
+          style={{
+            position: 'absolute',
+            width: particle.width,
+            height: particle.height,
+            borderRadius: '50%',
+            background: 'rgba(var(--primary-rgb), 0.2)',
+            top: `${particle.top}%`,
+            left: `${particle.left}%`,
+            zIndex: 0
+          }}
+          animate={{
+            y: [0, 15, 0, -15, 0],
+            opacity: [0.2, 0.5, 0.2]
+          }}
+          transition={{
+            duration: 8 + (i % 5) * 2,
+            repeat: Infinity,
+            ease: 'easeInOut'
+          }}
+        />
+      ))}
+
       <div style={containerStyle}>
         <motion.div
-          style={{...contentStyle, maxWidth: '1000px'}}
+          style={{ ...contentStyle, maxWidth: '1000px' }}
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -181,30 +168,6 @@ export default function CTA() {
               margin: '2rem auto 0',
             }}
           >
-            {/* Decorative elements for Calendly container */}
-            <div style={{
-              position: 'absolute',
-              top: '-50px',
-              right: '-50px',
-              width: '200px',
-              height: '200px',
-              borderRadius: '50%',
-              background: 'radial-gradient(circle, rgba(var(--primary-rgb), 0.2) 0%, transparent 70%)',
-              zIndex: 0
-            }}></div>
-            
-            <div style={{
-              position: 'absolute',
-              bottom: '-30px',
-              left: '-30px',
-              width: '150px',
-              height: '150px',
-              borderRadius: '50%',
-              background: 'radial-gradient(circle, rgba(var(--primary-rgb), 0.15) 0%, transparent 70%)',
-              zIndex: 0
-            }}></div>
-            
-            {/* Calendly inline widget */}
             <div 
               className="calendly-inline-widget" 
               data-url="https://calendly.com/nishit-findingniche/30min?hide_gdpr_banner=1&background_color=000000&text_color=ffffff&primary_color=6366f1&hide_event_type_details=1" 
@@ -216,7 +179,6 @@ export default function CTA() {
               }}
             ></div>
             
-            {/* Load Calendly script using useEffect to ensure it's client-side only */}
             <CalendlyScript />
           </motion.div>
         </motion.div>
@@ -246,7 +208,6 @@ export default function CTA() {
           }
         }
         
-        /* Custom Calendly Styling */
         .calendly-inline-widget {
           overflow: hidden !important;
           min-height: 780px !important;
@@ -265,7 +226,6 @@ export default function CTA() {
           transform-origin: top center;
         }
         
-        /* Hide scrollbars */
         .calendly-inline-widget iframe::-webkit-scrollbar {
           display: none;
         }
@@ -275,7 +235,6 @@ export default function CTA() {
           scrollbar-width: none;
         }
         
-        /* Calendly popup styling */
         .calendly-overlay .calendly-popup {
           border-radius: 16px !important;
           box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5) !important;
@@ -288,19 +247,16 @@ export default function CTA() {
           background-color: transparent !important;
         }
         
-        /* Make Calendly fit our theme better */
         .calendly-inline-widget iframe body {
           background-color: transparent !important;
         }
         
-        /* Remove any padding that might cause scrolling */
         .calendly-inline-widget .calendar-wrapper,
         .calendly-inline-widget .calendar-body {
           padding: 0 !important;
           margin: 0 !important;
         }
 
-        /* Responsive adjustments */
         @media (max-width: 768px) {
           #contact {
             padding: 4rem 1rem;

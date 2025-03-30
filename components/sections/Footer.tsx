@@ -1,9 +1,9 @@
 "use client";
 
-import Link from 'next/link';
-import { Twitter, Linkedin, Mail } from 'lucide-react';
-import { CSSProperties, useState, useEffect, RefObject } from 'react';
-import { motion } from 'framer-motion';
+import Link from "next/link";
+import { Twitter, Linkedin, Mail } from "lucide-react";
+import { CSSProperties, useState, useEffect, RefObject } from "react";
+import { motion } from "framer-motion";
 
 export default function Footer({ scheduleRef }: { scheduleRef: RefObject<HTMLDivElement> }) {
   const [isMediumScreen, setIsMediumScreen] = useState(false);
@@ -13,12 +13,12 @@ export default function Footer({ scheduleRef }: { scheduleRef: RefObject<HTMLDiv
       setIsMediumScreen(window.innerWidth >= 768);
     };
     handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const scrollToSchedule = () => {
@@ -89,7 +89,7 @@ export default function Footer({ scheduleRef }: { scheduleRef: RefObject<HTMLDiv
 
   return (
     <>
-      <div style={{ borderTop: '1px solid rgba(255, 255, 255, 0.1)', marginBottom: '2rem' }} />
+      <div style={{ borderTop: "1px solid rgba(255, 255, 255, 0.1)", marginBottom: "2rem" }} />
       <footer style={footerStyle}>
         <h2 style={headingStyle}>FNX Labs</h2>
         <p style={subheadingStyle}>AI-powered automation for personalized outreach and workflow efficiency.</p>

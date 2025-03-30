@@ -1,30 +1,22 @@
 "use client";
 
 import { useState, useEffect, CSSProperties } from "react";
-import { motion, Variants } from 'framer-motion';
-
-
+import { motion, Variants } from "framer-motion";
 
 export default function Hero() {
-  // Initialize responsive state
   const [isLargeScreen, setIsLargeScreen] = useState(false);
-  
+
   useEffect(() => {
     const handleResize = () => {
       setIsLargeScreen(window.innerWidth >= 1024);
     };
 
-    // Set initial value
     handleResize();
-
-    // Add event listener
     window.addEventListener("resize", handleResize);
 
-    // Clean up
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Animation variants
   const headingVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
@@ -49,11 +41,9 @@ export default function Hero() {
     }
   };
 
-  // Split the hero title into arrays for letter-by-letter animation
   const heroTitle = "Smarter Systems,".split("");
   const secondLine = "Stronger Businesses".split("");
 
-  // Styles
   const primaryButtonStyle: CSSProperties = {
     padding: '0.75rem 2rem',
     backgroundColor: 'transparent',
@@ -116,7 +106,6 @@ export default function Hero() {
     overflow: 'hidden',
   };
 
-  // Interactive floating elements
   const floatingElementsStyle: CSSProperties = {
     position: 'absolute',
     top: 0,
@@ -127,7 +116,6 @@ export default function Hero() {
     zIndex: 0
   };
 
-  // More engaging background with animated gradients
   const backgroundGradientStyle: CSSProperties = {
     position: 'absolute',
     top: 0,
@@ -192,7 +180,6 @@ export default function Hero() {
     gridColumn: '1 / -1'
   };
 
-  // Enhanced gradient text style
   const gradientTextStyle: CSSProperties = {
     backgroundImage: 'linear-gradient(45deg, var(--primary), #7c3aed, #4b9fff)',
     backgroundSize: '300% 300%',
@@ -204,8 +191,6 @@ export default function Hero() {
     animation: 'gradientText 6s ease infinite',
     fontWeight: 800
   };
-
- 
 
   const headingOneStyle: CSSProperties = {
     fontSize: 'clamp(2rem, 6vw, 3.5rem)',
@@ -253,7 +238,6 @@ export default function Hero() {
     flexWrap: 'wrap'
   };
 
-  // Create a fixed set of particles with predefined positions
   const particles = [
     { width: 20.06, height: 22.08, top: 98.35, left: 96.49 },
     { width: 13.57, height: 23.53, top: 94.90, left: 71.40 },
@@ -301,7 +285,6 @@ export default function Hero() {
       <div style={glowEffectStyle}></div>
       <div style={secondGlowEffectStyle}></div>
 
-      {/* Interactive floating elements */}
       <div style={floatingElementsStyle}>
         {particles.map((particle, i) => (
           <motion.div
@@ -342,7 +325,6 @@ export default function Hero() {
               animate="visible"
             >
               {heroTitle.map((letter, index) => {
-                // Apply different styles to specific letters
                 let letterStyle: CSSProperties = {};
                 if (index === 0) letterStyle = headingAccentStyle;
                 if (letter === "S" && index > 0) letterStyle = { color: '#7c3aed' };
@@ -359,7 +341,6 @@ export default function Hero() {
               })}
               <br />
               {secondLine.map((letter, index) => {
-                // Apply different styles to specific letters
                 let letterStyle: CSSProperties = {};
                 if (index === 0) letterStyle = gradientTextStyle;
                 else if (letter === "B") letterStyle = { color: '#7c3aed' };

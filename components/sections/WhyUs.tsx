@@ -4,15 +4,6 @@ import { CSSProperties, useEffect } from "react";
 import { Check, Shield, Clock } from "lucide-react";
 import { motion } from "framer-motion";
 
-export {};
-declare global {
-  interface Window {
-    Calendly: {
-      initInlineWidgets: () => void;
-    };
-  }
-}
-
 // Define styles
 const sectionStyle: CSSProperties = {
   backgroundColor: "#000",
@@ -119,7 +110,6 @@ export default function WhyUs() {
   ];
 
   useEffect(() => {
-    // Load the Calendly script
     const script = document.createElement("script");
     script.src = "https://assets.calendly.com/asset/production/embed.js";
     script.async = true;
@@ -130,7 +120,6 @@ export default function WhyUs() {
     };
     document.body.appendChild(script);
 
-    // Cleanup function to remove the script if the component unmounts
     return () => {
       document.body.removeChild(script);
     };
