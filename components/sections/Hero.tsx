@@ -41,7 +41,7 @@ export default function Hero() {
 
   // Split the hero title into arrays for letter-by-letter animation
   const heroTitle = "Smarter System,".split("");
-  const secondLine = "Stronger Business".split("");
+  // const secondLine = "Stronger Business".split("");
 
   // Styles
   const primaryButtonStyle: CSSProperties = {
@@ -213,10 +213,10 @@ export default function Hero() {
     textShadow: '0 0 20px rgba(75, 159, 255, 0.3)'
   };
 
-  const secondLineStyle: CSSProperties = {
-    color: 'rgba(255, 255, 255, 0.95)',
-    fontWeight: 700
-  };
+  // const secondLineStyle: CSSProperties = {
+  //   color: 'rgba(255, 255, 255, 0.95)',
+  //   fontWeight: 700
+  // };
 
   const paragraphStyle: CSSProperties = {
     fontSize: 'clamp(1rem, 4vw, 1.25rem)',
