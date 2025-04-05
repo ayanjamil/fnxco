@@ -8,12 +8,12 @@ import { CSSProperties } from 'react';
 
 export default function Hero() {
   // Initialize responsive state
-  const [ setIsLargeScreen] = useState(false);
-  
-  
+  const [setIsLargeScreen] = useState(false);
+
+
   useEffect(() => {
 
-  }, [setIsLargeScreen]); 
+  }, [setIsLargeScreen]);
 
   // Animation variants
   const headingVariants = {
@@ -26,12 +26,12 @@ export default function Hero() {
   };
 
   const letterVariants = {
-    hidden: { 
-      opacity: 0, 
-      y: 20 
+    hidden: {
+      opacity: 0,
+      y: 20
     },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       y: 0,
       transition: {
         duration: 0.4,
@@ -40,8 +40,8 @@ export default function Hero() {
   };
 
   // Split the hero title into arrays for letter-by-letter animation
-  const heroTitle = "Smarter Systems,".split("");
-  const secondLine = "Stronger Businesses".split("");
+  const heroTitle = "Smarter System,".split("");
+  const secondLine = "Stronger Business".split("");
 
   // Styles
   const primaryButtonStyle: CSSProperties = {
@@ -153,7 +153,7 @@ export default function Hero() {
     filter: 'blur(60px)',
     zIndex: 0
   };
-  
+
   const secondGlowEffectStyle: CSSProperties = {
     position: 'absolute',
     top: '20%',
@@ -195,7 +195,7 @@ export default function Hero() {
     fontWeight: 800
   };
 
- 
+
 
   const headingOneStyle: CSSProperties = {
     fontSize: 'clamp(2.5rem, 8vw, 4.5rem)',
@@ -274,18 +274,18 @@ export default function Hero() {
 
   return (
     <section style={heroStyle}>
-      <motion.div 
+      <motion.div
         style={backgroundGradientStyle}
-        animate={{ 
+        animate={{
           opacity: [0.9, 1, 0.9],
         }}
-        transition={{ 
-          duration: 8, 
-          repeat: Infinity, 
-          repeatType: 'reverse' 
+        transition={{
+          duration: 8,
+          repeat: Infinity,
+          repeatType: 'reverse'
         }}
       />
-      
+
       <div style={diagonalGradientStyle}></div>
       <div style={gridOverlayStyle}></div>
       <div style={glowEffectStyle}></div>
@@ -324,7 +324,7 @@ export default function Hero() {
       <div style={containerStyle}>
         <div style={heroContentStyle}>
           <div style={heroTextContainerStyle}>
-            <motion.h1 
+            <motion.h1
               style={headingOneStyle}
               variants={headingVariants}
               initial="hidden"
@@ -335,10 +335,10 @@ export default function Hero() {
                 let letterStyle = {};
                 if (index === 0) letterStyle = headingAccentStyle;
                 if (letter === "S" && index > 0) letterStyle = { color: '#7c3aed' };
-                
+
                 return (
-                  <motion.span 
-                    key={index} 
+                  <motion.span
+                    key={index}
                     variants={letterVariants}
                     style={letterStyle}
                   >
@@ -347,37 +347,44 @@ export default function Hero() {
                 );
               })}
               <br />
-              {secondLine.map((letter, index) => {
+              {/* {secondLine.map((letter, index) => {
                 // Apply different styles to specific letters
                 let letterStyle = {};
                 if (index === 0) letterStyle = gradientTextStyle;
                 else if (letter === "B") letterStyle = { color: '#7c3aed' };
                 else letterStyle = secondLineStyle;
-                
+
                 return (
-                  <motion.span 
-                    key={`second_${index}`} 
+                  <motion.span
+                    key={`second_${index}`}
                     variants={letterVariants}
                     style={letterStyle}
                   >
                     {letter === " " ? "\u00A0" : letter}
-                   
+
                   </motion.span>
                 );
-              })}
+              })} */}
+              <motion.span
+                variants={letterVariants}
+                style={gradientTextStyle}
+              >
+                {"Stronger Business"}
+              </motion.span>
+
             </motion.h1>
-            
+
             <motion.p
               style={paragraphStyle}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              Revolutionize your business with our <span style={highlightedTextStyle}>cutting-edge solutions</span> designed to 
-enhance operational efficiency and drive <span style={secondaryHighlightStyle}>growth</span> in today&apos;s digital landscape.
+              Revolutionize your business with our <span style={highlightedTextStyle}>cutting-edge solutions</span> designed to
+              enhance operational efficiency and drive <span style={secondaryHighlightStyle}>growth</span> in today&apos;s digital landscape.
 
             </motion.p>
-            
+
             <motion.div
               style={buttonGroupStyle}
               initial={{ opacity: 0, y: 20 }}
@@ -387,30 +394,30 @@ enhance operational efficiency and drive <span style={secondaryHighlightStyle}>g
               <motion.a
                 href="#features"
                 style={primaryButtonStyle}
-                whileHover={{ 
-                  scale: 1.05, 
+                whileHover={{
+                  scale: 1.05,
                   boxShadow: '0 0 25px rgba(75, 159, 255, 0.5)',
                   borderColor: '#7c3aed',
                   color: '#ffffff'
                 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <span style={{position: 'relative', zIndex: 2}}>Explore Features</span>
-                <motion.div 
+                <span style={{ position: 'relative', zIndex: 2 }}>Explore Features</span>
+                <motion.div
                   style={buttonHoverGlowStyle}
                   initial={{ opacity: 0 }}
-                  whileHover={{ 
+                  whileHover={{
                     opacity: 1,
                     background: 'linear-gradient(135deg, rgba(124, 58, 237, 0.8), rgba(75, 159, 255, 0.8))'
                   }}
                 />
               </motion.a>
-              
+
               <motion.a
                 href="#contact"
                 style={outlineButtonStyle}
-                whileHover={{ 
-                  scale: 1.05, 
+                whileHover={{
+                  scale: 1.05,
                   backgroundColor: 'rgba(255, 255, 255, 0.05)',
                   borderColor: 'rgba(124, 58, 237, 0.8)',
                   color: '#7c3aed',
@@ -418,9 +425,9 @@ enhance operational efficiency and drive <span style={secondaryHighlightStyle}>g
                 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <span style={{position: 'relative', zIndex: 2}}>Get Started</span>
-                <motion.div 
-                  style={{...buttonHoverGlowStyle, background: 'rgba(255, 255, 255, 0.03)'}}
+                <span style={{ position: 'relative', zIndex: 2 }}>Get Started</span>
+                <motion.div
+                  style={{ ...buttonHoverGlowStyle, background: 'rgba(255, 255, 255, 0.03)' }}
                   initial={{ height: '0%' }}
                   whileHover={{ height: '100%' }}
                 />
@@ -429,7 +436,7 @@ enhance operational efficiency and drive <span style={secondaryHighlightStyle}>g
           </div>
         </div>
       </div>
-      
+
       <style jsx global>{`
         @keyframes shimmer {
           0% {
