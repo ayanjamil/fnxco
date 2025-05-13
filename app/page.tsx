@@ -3,6 +3,8 @@ import Features from "@/components/sections/Features";
 import WhyUs from "@/components/sections/WhyUs";
 
 import CTA from "@/components/sections/CTA";
+// import VoiceAgent from "@/components/VoiceAgent";
+import VoiceWidget from "@/components/VoiceWidget";
 
 
 export default function Home() {
@@ -12,6 +14,9 @@ export default function Home() {
       <Features />
       <WhyUs />
       <CTA />
+      {/* <VoiceAgent /> */}
+      <VoiceWidget />
+
     </>
   );
 }
