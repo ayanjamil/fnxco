@@ -1,10 +1,10 @@
 "use client";
 
 import { CSSProperties } from "react";
-import { Check, Shield, Clock } from "lucide-react";
+import { Check, Shield, MessageSquare, Mic } from "lucide-react";
 import { motion } from "framer-motion";
 
-// Define styles
+// Styles
 const sectionStyle: CSSProperties = {
     backgroundColor: "#000",
     padding: "4rem 1.5rem",
@@ -32,49 +32,50 @@ const subtitleStyle: CSSProperties = {
     fontSize: "1rem",
     lineHeight: 1.5,
     color: "rgba(255, 255, 255, 0.8)",
-    margin: "0 auto 2rem auto",
+    maxWidth: "1000px",
+    margin: "0 auto 2rem",
     fontWeight: 300,
 };
 
 const boxContainerStyle: CSSProperties = {
     display: "flex",
-    flexDirection: "row",
+    flexWrap: "wrap",
     justifyContent: "center",
-    alignItems: "center",
-    flexWrap: "wrap", // Allow wrapping to avoid horizontal scrolling
-    gap: "1rem",
+    gap: "1.5rem",
+    marginTop: "2rem",
 };
 
 const boxStyle: CSSProperties = {
-    padding: "2rem", // Reduced padding for better fit
+    flex: "1 1 280px",
+    maxWidth: "320px",
     backgroundColor: "rgba(255, 255, 255, 0.02)",
-    position: "relative",
-    overflow: "hidden",
+    padding: "2rem",
+    borderRadius: "10px",
     backdropFilter: "blur(5px)",
-    borderRadius: "8px",
-    margin: "0", // Adjusted margin for alignment
-    transition: "all 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
+    border: "2px solid rgba(255, 255, 255, 0.1)",
+    boxShadow: "0 4px 20px rgba(255, 255, 255, 0.1)",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    border: "2px solid rgba(255, 255, 255, 0.1)",
-    boxShadow: "0 4px 20px rgba(255, 255, 255, 0.1)",
-    flex: "1 1 calc(33.333% - 1rem)", // Flexible sizing for three boxes per row
-    minWidth: "250px",
-    maxWidth: "300px", // Limit maximum width
+    transition: "all 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
+    cursor: "default",
+    textAlign: "center",
 };
 
 const pointStyle: CSSProperties = {
     fontSize: "1.5rem",
-    marginBottom: "1rem",
-    textAlign: "center",
+    marginTop: "1rem",
+    marginBottom: "0.75rem",
+    fontWeight: 600,
+    color: "#fff",
 };
 
 const hoverEffect = {
     whileHover: {
         scale: 1.05,
-        boxShadow: "0 8px 40px rgba(255, 255, 255, 0.3)",
+        boxShadow: "0 8px 40px rgba(75, 159, 255, 0.5)",
         borderColor: "#4b9fff",
+        cursor: "pointer",
     },
 };
 
@@ -83,47 +84,38 @@ const subtitleAccentStyle: CSSProperties = {
     fontWeight: 500,
 };
 
-// Main component
+// Component
 export default function WhyUs() {
     const features = [
         {
             id: 1,
-            title: <strong>Identify Pain Points</strong>,
+            title: "10x Follow-up Speed",
             description:
-                "Uncover and fix inefficiencies that are holding you back, streamlining your path to growth.",
+                "Instantly respond to leads and inquiries without delay, ensuring no opportunity is missed.",
             icon: <Check size={50} color="#4b9fff" />,
         },
         {
             id: 2,
-            title: <strong>Eliminate Bottlenecks</strong>,
+            title: "Zero Drop-offs",
             description:
-                "Streamline your workflows for smooth, efficient, and hassle-free operations.",
+                "Never lose another lead due to delayed response or follow-up fatigue.",
             icon: <Shield size={50} color="#4b9fff" />,
         },
         {
             id: 3,
-            title: <strong>High ROI & Scalability</strong>,
+            title: "Conversations at Scale",
             description:
-                "Grow confidently with flexible solutions that expand alongside your business.",
-            icon: <Clock size={50} color="#4b9fff" />,
+                "Handle thousands of simultaneous conversations with consistent quality and personalization.",
+            icon: <MessageSquare size={50} color="#4b9fff" />,
+        },
+        {
+            id: 4,
+            title: "Custom-trained AI Voice",
+            description:
+                "Tailor your AI voice to match your brand personality and customer expectations.",
+            icon: <Mic size={50} color="#4b9fff" />,
         },
     ];
-
-    // useEffect(() => {
-    //     const script = document.createElement("script");
-    //     script.src = "https://assets.calendly.com/asset/production/embed.js";
-    //     script.async = true;
-    //     script.onload = () => {
-    //         if (window.Calendly) {
-    //             window.Calendly.initInlineWidgets();
-    //         }
-    //     };
-    //     document.body.appendChild(script);
-
-    //     return () => {
-    //         document.body.removeChild(script);
-    //     };
-    // }, []);
 
     return (
         <section id="why-us" style={sectionStyle}>
@@ -135,35 +127,28 @@ export default function WhyUs() {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 viewport={{ once: true, amount: 0.3 }}
             >
-                FNX Labs is Your Trusted Partner for{" "}
-                <span style={subtitleAccentStyle}>AI-Powered Automation</span>. Want to
-                spend less time on administrative tasks and more time building your
-                business? Here&apos;s how we deliver on that promise: Discover how our{" "}
-                <span style={subtitleAccentStyle}>cutting-edge solutions</span> can
-                transform your business with these powerful features designed for the
-                modern enterprise.
+                FNX Labs is your trusted partner for <span style={subtitleAccentStyle}>AI-Powered Automation</span>. Spend less time on admin tasks and more on growing your business. See how our <span style={subtitleAccentStyle}>cutting-edge solutions</span> can transform your enterprise with powerful, modern features.
             </motion.p>
+
             <div style={boxContainerStyle}>
-                {features.map((feature, index) => (
+                {features.map((feature, i) => (
                     <motion.div
                         key={feature.id}
                         style={boxStyle}
                         {...hoverEffect}
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, delay: index * 0.1 }}
+                        transition={{ duration: 0.6, delay: i * 0.1 }}
                         viewport={{ once: true, amount: 0.3 }}
                     >
                         {feature.icon}
                         <h3 style={pointStyle}>{feature.title}</h3>
-                        <p>{feature.description}</p>
+                        <p style={{ color: "rgba(255, 255, 255, 0.75)", fontWeight: 400 }}>
+                            {feature.description}
+                        </p>
                     </motion.div>
                 ))}
             </div>
-            <p>
-                We craft a tailored action plan that fits your budget and needs—no
-                guesswork, just solutions.
-            </p>
         </section>
     );
 }

@@ -69,15 +69,16 @@ export default function Footer({ scheduleRef }: { scheduleRef?: React.RefObject<
             <footer style={footerStyle}>
                 <div style={{ marginBottom: '1.5rem' }}>
                     <h2 style={{ fontSize: '1.75rem', fontWeight: 700 }}>FNX Labs</h2>
-                    <p style={subheadingStyle}>AI-powered automation for personalized outreach and workflow efficiency.</p>
-                    <p style={subheadingStyle}>nishit@fnxlabs.co</p>
+                    {/* <p style={subheadingStyle}>AI-powered automation for personalized outreach and workflow efficiency.</p> */}
+                    {/* <p style={subheadingStyle}>nishit@fnxlabs.co</p> */}
                 </div>
 
                 <div style={gridStyle}>
                     <div>
                         <h3 style={headingStyle}>Solutions</h3>
-                        <p style={subheadingStyle}>AI Avatar Videos</p>
-                        <p style={subheadingStyle}>Workflow Automation</p>
+                        <p style={subheadingStyle}>Lead Qualification</p>
+                        <p style={subheadingStyle}>Appointment Setting</p>
+                        <p style={subheadingStyle}>Support & Reactivation</p>
                     </div>
                     <div>
                         <h3 style={headingStyle}>Company</h3>
