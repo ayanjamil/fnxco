@@ -25,7 +25,7 @@ html {
 body {
   background-color: var(--background);
   color: var(--foreground);
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   line-height: 1.6;
   letter-spacing: 0.015em;
 }
@@ -90,7 +90,12 @@ body {
   }
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-weight: 300;
   color: var(--foreground);
   letter-spacing: 0.05em;
@@ -118,12 +123,16 @@ h3 {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 /* Fix for animations to prevent overlay */
-.motion-safe:where([data-motion=true]) {
+.motion-safe:where([data-motion="true"]) {
   transform: translateZ(0);
 }
 
@@ -208,11 +217,142 @@ h3 {
   line-height: 1.7;
 }
 
+.animate-wave {
+  animation: wave 1s infinite ease-in-out;
+  transform-origin: bottom;
+}
+
 /* Force each section to be properly layered */
-#hero { z-index: 10; }
-#partners { z-index: 9; }
-#features { z-index: 8; }
-#pricing { z-index: 7; }
-#testimonials { z-index: 6; }
-#faq { z-index: 5; }
-#contact { z-index: 4; }
+#hero {
+  z-index: 10;
+}
+#partners {
+  z-index: 9;
+}
+#features {
+  z-index: 8;
+}
+#pricing {
+  z-index: 7;
+}
+#testimonials {
+  z-index: 6;
+}
+#faq {
+  z-index: 5;
+}
+#contact {
+  z-index: 4;
+}
+
+/* globals.css */
+@keyframes quiet {
+  25% {
+    transform: scaleY(0.6);
+  }
+  50% {
+    transform: scaleY(0.4);
+  }
+  75% {
+    transform: scaleY(0.8);
+  }
+}
+
+@keyframes normal {
+  25% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(0.4);
+  }
+  75% {
+    transform: scaleY(0.6);
+  }
+}
+
+@keyframes loud {
+  25% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(0.4);
+  }
+  75% {
+    transform: scaleY(1.2);
+  }
+}
+
+.boxContainer {
+  display: flex;
+  justify-content: space-between;
+  height: 64px;
+  --boxSize: 8px;
+  --gutter: 4px;
+  width: calc((var(--boxSize) + var(--gutter)) * 5);
+}
+
+/* .box {
+  transform: scaleY(0.4);
+  height: 100%;
+  width: var(--boxSize);
+  background: #dfe6ec;
+  animation-duration: 5.2s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  border-radius: 8px;
+} */
+.box {
+  transform: scaleY(0.4);
+  height: 100%;
+  width: var(--boxSize);
+  border-radius: 10px;
+  animation-duration: 10s, 5.2s;
+  animation-timing-function: linear, ease-in-out;
+  animation-iteration-count: infinite, infinite;
+}
+
+@keyframes colorShift {
+  0% {
+    background-color: #b4beff;
+  }
+  25% {
+    background-color: #7c6fff;
+  }
+  50% {
+    background-color: #8e60ff;
+  }
+  75% {
+    background-color: #9f50ff;
+  }
+  100% {
+    background-color: #1360fb;
+  }
+}
+
+.box1 {
+  animation-name: colorShift, quiet;
+}
+.box2 {
+  animation-name: colorShift, normal;
+}
+.box3 {
+  animation-name: colorShift, quiet;
+}
+.box4 {
+  animation-name: colorShift, loud;
+}
+.box5 {
+  animation-name: colorShift, quiet;
+}
+
+@keyframes gradientText {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}

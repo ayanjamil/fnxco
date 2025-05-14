@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion } from 'framer-motion';
 import { CSSProperties } from 'react';
+import VoiceAgent from "../VoiceAgent";
 
 
 
@@ -40,47 +41,69 @@ export default function Hero() {
   };
 
   // Split the hero title into arrays for letter-by-letter animation
-  const heroTitle = "Smarter System,".split("");
+  const heroTitle = "Talk to the Future".split("");
   // const secondLine = "Stronger Business".split("");
 
   // Styles
+  // const primaryButtonStyle: CSSProperties = {
+  //   padding: '0.75rem 2rem',
+  //   backgroundColor: 'transparent',
+  //   color: '#fff',
+  //   fontWeight: '500',
+  //   border: '2px solid var(--primary)',
+  //   display: 'inline-flex',
+  //   alignItems: 'center',
+  //   textDecoration: 'none',
+  //   fontSize: '0.9rem',
+  //   letterSpacing: '0.05em',
+  //   textTransform: 'uppercase',
+  //   transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+  //   fontFamily: 'var(--font-alt)',
+  //   position: 'relative',
+  //   overflow: 'hidden',
+  //   zIndex: 1
+  // };
+
   const primaryButtonStyle: CSSProperties = {
-    padding: '0.75rem 2rem',
+    width: '100px',  // or any desired size
+    height: '100px',
+    borderRadius: '50%',
     backgroundColor: 'transparent',
-    color: '#fff',
+    // color: '#fff',
     fontWeight: '500',
     border: '2px solid var(--primary)',
     display: 'inline-flex',
     alignItems: 'center',
+    justifyContent: 'center', // center the content horizontally
     textDecoration: 'none',
-    fontSize: '0.9rem',
+    fontSize: '1rem',
     letterSpacing: '0.05em',
     textTransform: 'uppercase',
     transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
     fontFamily: 'var(--font-alt)',
     position: 'relative',
     overflow: 'hidden',
-    zIndex: 1
+    zIndex: 1,
   };
 
-  const outlineButtonStyle: CSSProperties = {
-    padding: '0.75rem 2rem',
-    backgroundColor: 'transparent',
-    color: 'var(--foreground)',
-    border: '2px solid rgba(255, 255, 255, 0.2)',
-    fontWeight: '500',
-    display: 'inline-flex',
-    alignItems: 'center',
-    textDecoration: 'none',
-    fontSize: '0.9rem',
-    letterSpacing: '0.05em',
-    textTransform: 'uppercase',
-    transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
-    fontFamily: 'var(--font-alt)',
-    position: 'relative',
-    overflow: 'hidden',
-    zIndex: 1
-  };
+  // const outlineButtonStyle: CSSProperties = {
+  //   padding: '0.75rem 2rem',
+  //   backgroundColor: 'transparent',
+  //   color: 'var(--foreground)',
+  //   border: '2px solid rgba(255, 255, 255, 0.2)',
+  //   fontWeight: '500',
+  //   display: 'inline-flex',
+  //   alignItems: 'center',
+  //   textDecoration: 'none',
+  //   fontSize: '0.9rem',
+  //   letterSpacing: '0.05em',
+  //   textTransform: 'uppercase',
+  //   transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+  //   fontFamily: 'var(--font-alt)',
+  //   position: 'relative',
+  //   overflow: 'hidden',
+  //   zIndex: 1
+  // };
 
   const buttonHoverGlowStyle: CSSProperties = {
     position: 'absolute',
@@ -209,7 +232,7 @@ export default function Hero() {
   };
 
   const headingAccentStyle: CSSProperties = {
-    color: '#4b9fff',
+    color: '#42eff5',
     textShadow: '0 0 20px rgba(75, 159, 255, 0.3)'
   };
 
@@ -227,20 +250,21 @@ export default function Hero() {
     fontWeight: 300
   };
 
-  const highlightedTextStyle: CSSProperties = {
-    color: '#7c3aed',
-    fontWeight: 500
-  };
+  // const highlightedTextStyle: CSSProperties = {
+  //   color: '#7c3aed',
+  //   fontWeight: 500
+  // };
 
-  const secondaryHighlightStyle: CSSProperties = {
-    color: '#4b9fff',
-    fontWeight: 400
-  };
+  // const secondaryHighlightStyle: CSSProperties = {
+  //   color: '#4b9fff',
+  //   fontWeight: 400
+  // };
 
   const buttonGroupStyle: CSSProperties = {
     display: 'flex',
     gap: '1rem',
-    flexWrap: 'wrap'
+    flexWrap: 'wrap',
+    justifyContent: 'center',
   };
 
   // Create a fixed set of particles with predefined positions
@@ -333,8 +357,8 @@ export default function Hero() {
               {heroTitle.map((letter, index) => {
                 // Apply different styles to specific letters
                 let letterStyle = {};
-                if (index === 0) letterStyle = headingAccentStyle;
-                if (letter === "S" && index > 0) letterStyle = { color: '#7c3aed' };
+                if (index < 20 && index > 10) letterStyle = headingAccentStyle;
+                // if (letter === "S" && index > 0) letterStyle = { color: '#7c3aed' };
 
                 return (
                   <motion.span
@@ -369,7 +393,7 @@ export default function Hero() {
                 variants={letterVariants}
                 style={gradientTextStyle}
               >
-                {"Stronger Business"}
+                {"We’ll Handle the Rest"}
               </motion.span>
 
             </motion.h1>
@@ -380,10 +404,13 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              Revolutionize your business with our <span style={highlightedTextStyle}>cutting-edge solutions</span> designed to
-              enhance operational efficiency and drive <span style={secondaryHighlightStyle}>growth</span> in today&apos;s digital landscape.
+              Click the button below to experience our AI voice agent.
+              {/* Revolutionize your business with our <span style={highlightedTextStyle}>cutting-edge solutions</span> designed to
+              enhance operational efficiency and drive <span style={secondaryHighlightStyle}>growth</span> in today&apos;s digital landscape. */}
 
             </motion.p>
+            {/* <VoiceAgent /> */}
+
 
             <motion.div
               style={buttonGroupStyle}
@@ -392,7 +419,7 @@ export default function Hero() {
               transition={{ duration: 0.6, delay: 0.6 }}
             >
               <motion.a
-                href="#features"
+                // href="#features"
                 style={primaryButtonStyle}
                 whileHover={{
                   scale: 1.05,
@@ -402,7 +429,11 @@ export default function Hero() {
                 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <span style={{ position: 'relative', zIndex: 2 }}>Explore Features</span>
+                {/* <span style={{ position: 'relative', zIndex: 2 }}>Explore Features</span> */}
+                <div>
+                  <VoiceAgent />
+
+                </div>
                 <motion.div
                   style={buttonHoverGlowStyle}
                   initial={{ opacity: 0 }}
@@ -413,7 +444,7 @@ export default function Hero() {
                 />
               </motion.a>
 
-              <motion.a
+              {/* <motion.a
                 href="#contact"
                 style={outlineButtonStyle}
                 whileHover={{
@@ -431,7 +462,7 @@ export default function Hero() {
                   initial={{ height: '0%' }}
                   whileHover={{ height: '100%' }}
                 />
-              </motion.a>
+              </motion.a> */}
             </motion.div>
           </div>
         </div>

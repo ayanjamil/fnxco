@@ -5,22 +5,25 @@ import { useState } from "react";
 
 export default function VoiceAgent() {
     const [started, setStarted] = useState(false);
-    const [messages, setMessages] = useState<string[]>([]);
 
     const conversation = useConversation({
         onConnect: () => console.log("Connected"),
         onDisconnect: () => console.log("Disconnected"),
-        onMessage: (msg) => {
-            console.log("Message:", msg);
-            setMessages((prev) => [...prev, JSON.stringify(msg)]);
-        },
         onError: (err) => console.error("Error:", err),
     });
 
+    const agentId = process.env.NEXT_PUBLIC_AGENT_ID_ONE;
+
     const startChat = async () => {
+        if (!agentId) {
+            console.error("Missing NEXT_PUBLIC_AGENT_ID_ONE in environment variables.");
+            alert("Agent ID is missing.");
+            return;
+        }
+
         try {
             await navigator.mediaDevices.getUserMedia({ audio: true });
-            await conversation.startSession({ agentId: "LPfDBwxyOhTo24f8Ehjt" });
+            await conversation.startSession({ agentId });
             setStarted(true);
         } catch (err) {
             console.error("Microphone error or session failed:", err);
@@ -33,37 +36,17 @@ export default function VoiceAgent() {
         setStarted(false);
     };
 
-    return (
-        <div className="p-4 border rounded-xl shadow-md w-fit mx-auto my-8 text-center">
-            <h3 className="text-lg font-semibold mb-2">Need help? Talk to our AI agent!</h3>
-            {!started ? (
-                <button
-                    type="button"
-                    onClick={startChat}
-                    className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
-                >
-                    Start Voice Chat
-                </button>
-            ) : (
-                <button
-                    type="button"
-                    onClick={endChat}
-                    className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
-                >
-                    End Chat
-                </button>
-            )}
+    const handleClick = started ? endChat : startChat;
 
-            {/* Optional: Show agent messages */}
-            {messages.length > 0 && (
-                <div className="mt-4 text-left max-w-md mx-auto">
-                    {messages.map((m, i) => (
-                        <p key={i} className="text-sm text-gray-600 mb-1">
-                            {m}
-                        </p>
-                    ))}
-                </div>
-            )}
+    return (
+        <div onClick={handleClick}>
+            <div className="boxContainer">
+                <div className="box box1"></div>
+                <div className="box box2"></div>
+                <div className="box box3"></div>
+                <div className="box box4"></div>
+                <div className="box box5"></div>
+            </div>
         </div>
     );
 }
